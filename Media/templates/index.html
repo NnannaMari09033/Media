@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE AVATARS</title>
+    <style>
+        /* Basic Reset */
+        body, h1, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* General Styles */
+        body {
+            font-family: tahoma, 'Times New Roman', Times, serif, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 0;
+            margin: 0;
+            background-color: #d6680e;
+        }
+
+        header {
+            background: #141414;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f4a261;
+        }
+
+        main {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 1em;
+        }
+
+        section {
+            padding: 2em 1em;
+            margin-bottom: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #f1e0e0;
+        }
+
+        h2 {
+            border-bottom: 3px solid #333;
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
+            font-size: 1.8em;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 1em;
+        }
+
+        .images img {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .videos iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            main {
+                width: 95%;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Webpage</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#images">Images</a></li>
+                    <li><a href="#videos">Videos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                We are thrilled to welcome you to our vibrant and active world of visuals! Here you will discover a stunning collection
+                of captivating and entertaining videos and striking images that showcase inspiring moments, creative projects, and
+                entertainment. Dive into our latest upload to experience cinematic adventures and artistic photography. Our goal is to
+                entertain you with every post, so don't miss out! Thank you for joining us on this virtual journey. We can't wait to
+                share our latest creations with you!
+                Best regards,
+                THE AVATARS
+            </p>
+        </section>
+
+        <section id="download">
+            <h2>Download</h2>
+            <ul>
+                {% for file in files %}
+                    <li>
+                        <a href=""{% url 'download_file' filename='media/document' %}">download</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section id="images" class="images">
+            <h2>Images</h2>
+            
+            {% for image in images %}
+            <img src="{{ image.nature }}" alt="Nature" height=500>
+            <br>
+            <p>
+                A peaceful landscape conveys a sense of calmness and tranquility, inviting the viewer to escape into a world of stillness.
+                In this image, it showcases the peaceful nature and how wonderful and beautiful it is. It is a place where we go to calm 
+                our systems and free our minds from the troubles of this world because it's divine! 
+            </p>
+            <img src="{% static 'images/ocean.jpg' %}" alt="The ocean">
+            <br>
+            <p>
+                The ocean's vastness and waves can convey a sense of awe-inspiring power and majesty, reminding us of the forces beyond 
+                human control. It invokes feelings of serenity, calmness, and tranquility, inviting the viewer to relax and unwind.
+                The ocean is divine.
+            </p>
+            <img src="{% static 'images/sunflower.jpg' %}" alt="The flower blooms">
+            <br>
+            <p>
+                The butterfly's gentle landing on the flower petals conveys a sense of fragility and delicacy. It showcases a harmonious 
+                relationship between two natural elements, highlighting the balance and interconnectedness of the natural world.
+                I love butterflies and you should love them too because they make all your worries go away!
+            </p>
+            <br>
+            {% endfor %}
+        </section>
+
+        <section id="videos" class="videos">
+            <h2>Videos</h2>
+            <iframe src="https://www.youtube.com/embed/uQMQ-AhiW40" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/lsQVukhwpqQ" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/IXJruZj0V2k" allowfullscreen></iframe>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Website</p>
+    </footer>
+</body>
+</html>
